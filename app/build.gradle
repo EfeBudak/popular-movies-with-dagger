@@ -32,4 +32,6 @@ dependencies {
     compile 'com.google.dagger:dagger-android-support:2.11' // if you use the support libraries
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
     annotationProcessor "com.google.dagger:dagger-compiler:2.11"
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 }
