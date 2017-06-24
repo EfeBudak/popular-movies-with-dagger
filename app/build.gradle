@@ -9,6 +9,13 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        Properties properties = new Properties();
+        properties.load(project.rootProject.file('secret.properties').newDataInputStream())
+
+        buildConfigField "String", "BASE_URL", properties.getProperty('BASE_URL')
+        buildConfigField "String", "BASE_IMAGE_URL", properties.getProperty('BASE_IMAGE_URL')
+        buildConfigField "String", "API_VERSION", properties.getProperty('API_VERSION')
+        buildConfigField "String", "API_KEY", properties.getProperty('API_KEY')
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
