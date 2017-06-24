@@ -9,7 +9,7 @@ import com.efebudak.androidsampleproject.BaseView;
 
 public interface MovieListContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
 
     }
 

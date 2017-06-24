@@ -23,7 +23,7 @@ public class MovieDeciderApplication extends Application implements HasActivityI
     @Override
     public void onCreate() {
         super.onCreate();
-        DaggerAppComponent.builder().application(this).build();
+        DaggerAppComponent.builder().application(this).build().inject(this);
     }
 
     @Override

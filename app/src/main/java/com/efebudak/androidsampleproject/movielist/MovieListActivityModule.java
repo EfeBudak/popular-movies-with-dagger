@@ -1,6 +1,5 @@
 package com.efebudak.androidsampleproject.movielist;
 
-import dagger.Binds;
 import dagger.Module;
 
 /**
@@ -10,6 +9,4 @@ import dagger.Module;
 @Module
 public abstract class MovieListActivityModule {
 
-    @Binds
-    abstract MovieListContract.View provideView(MovieListFragment movieListFragment);
 }

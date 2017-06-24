@@ -1,5 +1,6 @@
 package com.efebudak.androidsampleproject.movielist;
 
+import dagger.Binds;
 import dagger.Module;
 
 /**
@@ -7,5 +8,11 @@ import dagger.Module;
  */
 
 @Module
-public class MovieListFragmentModule {
+public abstract class MovieListFragmentModule {
+
+    @Binds
+    abstract MovieListContract.View provideView(MovieListFragment movieListFragment);
+
+    @Binds
+    abstract MovieListContract.Presenter providePresenter(MovieListPresenter movieListPresenter);
 }
