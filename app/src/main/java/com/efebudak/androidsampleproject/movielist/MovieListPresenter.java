@@ -1,7 +1,5 @@
 package com.efebudak.androidsampleproject.movielist;
 
-import android.util.Log;
-
 import com.efebudak.androidsampleproject.data.MovieListPage;
 import com.efebudak.androidsampleproject.data.source.MovieDataSource;
 
@@ -27,23 +25,34 @@ public class MovieListPresenter implements MovieListContract.Presenter {
     @Override
     public void subscribe() {
 
-        mMovieDataSource.getMovies(new MovieDataSource.Callback<MovieListPage>() {
-            @Override
-            public void onSuccess(MovieListPage response) {
-                Log.d("onSuccess", "Subscribe");
-            }
-
-            @Override
-            public void onError(String errorMessage) {
-                Log.d("onError", "Subscribe");
-            }
-        });
-        Log.d("Presenter", "Subscribe");
+        getMoviePage();
     }
 
     @Override
     public void unsubscribe() {
 
-        Log.d("Presenter", "unSubscribe");
+    }
+
+    @Override
+    public void onRefresh() {
+        getMoviePage();
+    }
+
+    private void getMoviePage() {
+        mView.setRefreshing(true);
+        mMovieDataSource.getMovies(new MovieDataSource.Callback<MovieListPage>() {
+            @Override
+            public void onSuccess(MovieListPage response) {
+
+                mView.updateMovieList(response.getResults());
+                mView.setRefreshing(false);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                mView.setRefreshing(false);
+                mView.showErrorMessage(errorMessage);
+            }
+        });
     }
 }

@@ -23,7 +23,7 @@ public class MovieListActivity extends AppCompatActivity implements HasSupportFr
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_movie_list);
 
         MovieListFragment spendingListFragment
                 = (MovieListFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);

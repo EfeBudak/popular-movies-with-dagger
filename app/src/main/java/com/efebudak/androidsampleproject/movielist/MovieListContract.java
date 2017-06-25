@@ -2,6 +2,9 @@ package com.efebudak.androidsampleproject.movielist;
 
 import com.efebudak.androidsampleproject.BasePresenter;
 import com.efebudak.androidsampleproject.BaseView;
+import com.efebudak.androidsampleproject.data.Movie;
+
+import java.util.List;
 
 /**
  * Created by efebudak on 24/06/2017.
@@ -10,10 +13,14 @@ import com.efebudak.androidsampleproject.BaseView;
 public interface MovieListContract {
 
     interface View extends BaseView {
+        void updateMovieList(List<Movie> movieList);
 
+        void setRefreshing(boolean active);
+
+        void showErrorMessage(String errorMessage);
     }
 
     interface Presenter extends BasePresenter {
-
+        void onRefresh();
     }
 }

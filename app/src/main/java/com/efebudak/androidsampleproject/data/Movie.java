@@ -12,6 +12,12 @@ public class Movie {
     private long id;
     @SerializedName("title")
     private String title;
+    @SerializedName("popularity")
+    private double popularity;
+    @SerializedName("poster_path")
+    private String posterPath;
+    @SerializedName("release_date")
+    private String releaseDate;
 
     public long getId() {
         return id;
@@ -19,5 +25,17 @@ public class Movie {
 
     public String getTitle() {
         return title;
+    }
+
+    public double getPopularity() {
+        return popularity;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
     }
 }
