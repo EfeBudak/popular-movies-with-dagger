@@ -2,10 +2,10 @@ package com.efebudak.androidsampleproject.movielist;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.efebudak.androidsampleproject.R;
+import com.efebudak.androidsampleproject.util.ui.ActivityUtils;
 
 import javax.inject.Inject;
 
@@ -28,10 +28,10 @@ public class MovieListActivity extends AppCompatActivity implements HasSupportFr
         MovieListFragment spendingListFragment
                 = (MovieListFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
         if (spendingListFragment == null) {
-            spendingListFragment = MovieListFragment.newInstance();
-            final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.activity_main_frame_layout, spendingListFragment);
-            fragmentTransaction.commit();
+            ActivityUtils.addFragmentToActivity(
+                    getSupportFragmentManager(),
+                    MovieListFragment.newInstance(),
+                    R.id.activity_main_frame_layout);
         }
     }
 
