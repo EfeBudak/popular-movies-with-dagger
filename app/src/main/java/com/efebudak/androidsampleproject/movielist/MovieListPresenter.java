@@ -1,7 +1,10 @@
 package com.efebudak.androidsampleproject.movielist;
 
+import android.support.annotation.NonNull;
+
 import com.efebudak.androidsampleproject.data.MovieListPage;
 import com.efebudak.androidsampleproject.data.source.MovieDataSource;
+import com.efebudak.androidsampleproject.data.source.MovieRepository;
 
 import javax.inject.Inject;
 
@@ -12,14 +15,14 @@ import javax.inject.Inject;
 public class MovieListPresenter implements MovieListContract.Presenter {
 
     private MovieListContract.View mView;
-    private MovieDataSource mMovieDataSource;
+    private MovieRepository mMovieRepository;
 
     @Inject
     public MovieListPresenter(
             MovieListContract.View view,
-            MovieDataSource movieDataSource) {
+            MovieRepository movieRepository) {
         mView = view;
-        mMovieDataSource = movieDataSource;
+        mMovieRepository = movieRepository;
     }
 
     @Override
@@ -35,14 +38,15 @@ public class MovieListPresenter implements MovieListContract.Presenter {
 
     @Override
     public void onRefresh() {
+        mMovieRepository.refresh();
         getMoviePage();
     }
 
     private void getMoviePage() {
         mView.setRefreshing(true);
-        mMovieDataSource.getMovies(new MovieDataSource.Callback<MovieListPage>() {
+        mMovieRepository.getMovies(new MovieDataSource.Callback<MovieListPage>() {
             @Override
-            public void onSuccess(MovieListPage response) {
+            public void onSuccess(@NonNull MovieListPage response) {
 
                 mView.updateMovieList(response.getResults());
                 mView.setRefreshing(false);

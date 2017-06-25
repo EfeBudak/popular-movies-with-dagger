@@ -1,5 +1,7 @@
 package com.efebudak.androidsampleproject.data.source;
 
+import android.support.annotation.NonNull;
+
 import com.efebudak.androidsampleproject.data.MovieListPage;
 
 /**
@@ -9,7 +11,7 @@ import com.efebudak.androidsampleproject.data.MovieListPage;
 public interface MovieDataSource {
 
     interface Callback<T> {
-        void onSuccess(T response);
+        void onSuccess(@NonNull T response);
 
         void onError(String errorMessage);
     }

@@ -74,11 +74,4 @@ public class ApiModule {
     MovieDataSource provideRemoteMovieDataSource(RemoteMovieDataSource remoteMovieDataSource) {
         return remoteMovieDataSource;
     }
-
-    @Singleton
-    @Provides
-    MovieDataSource provideMovieDataSource(MovieRepository movieRepository) {
-        return movieRepository;
-    }
-
 }

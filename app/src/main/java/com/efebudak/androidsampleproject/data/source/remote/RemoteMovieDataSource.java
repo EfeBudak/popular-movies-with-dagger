@@ -6,6 +6,7 @@ import com.efebudak.androidsampleproject.data.source.MovieDataSource;
 import com.efebudak.androidsampleproject.data.source.TMDBService;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -14,6 +15,7 @@ import retrofit2.Response;
  * Created by efebudak on 24/06/2017.
  */
 
+@Singleton
 public class RemoteMovieDataSource implements MovieDataSource {
 
     private TMDBService mTmdbService;
