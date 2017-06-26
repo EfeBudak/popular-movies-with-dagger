@@ -36,6 +36,12 @@ public class MovieListPresenter implements MovieListContract.Presenter {
         getMoviePage();
     }
 
+    @Override
+    public void onItemClicked(long movieId) {
+        //may be used to modify data such as; mMovieRepository.setAsRead(movieId);
+        mView.openDetail(movieId);
+    }
+
     private void getMoviePage() {
         mView.setRefreshing(true);
         mMovieRepository.getMovies(new MovieDataSource.Callback<MovieListPage>() {

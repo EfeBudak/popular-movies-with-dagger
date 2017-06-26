@@ -18,9 +18,12 @@ public interface MovieListContract {
         void setRefreshing(boolean active);
 
         void showErrorMessage(String errorMessage);
+
+        void openDetail(long movieId);
     }
 
     interface Presenter extends BasePresenter {
         void onRefresh();
+        void onItemClicked(long movieId);
     }
 }

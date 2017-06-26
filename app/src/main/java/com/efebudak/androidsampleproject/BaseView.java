@@ -6,4 +6,5 @@ package com.efebudak.androidsampleproject;
 
 public interface BaseView {
 
+    boolean isActive();
 }

@@ -85,4 +85,9 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
         mTextViewPopularity.setText(getString(R.string.popularity_info, String.valueOf(movie.getPopularity())));
         mTextViewOverview.setText(movie.getOverview());
     }
+
+    @Override
+    public boolean isActive() {
+        return isAdded();
+    }
 }

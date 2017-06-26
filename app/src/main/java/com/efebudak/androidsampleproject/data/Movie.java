@@ -27,6 +27,11 @@ public class Movie {
     @SerializedName("overview")
     private String overview;
 
+    public Movie(String title, String overview) {
+        this.title = title;
+        this.overview = overview;
+    }
+
     public long getId() {
         return id;
     }

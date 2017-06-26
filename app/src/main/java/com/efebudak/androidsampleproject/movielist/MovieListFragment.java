@@ -110,8 +110,13 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
     }
 
     @Override
-    public void onItemClicked(long movieId) {
+    public void openDetail(long movieId) {
         startActivity(MovieDetailActivity.newIntent(getActivity(), movieId));
+    }
+
+    @Override
+    public void onItemClicked(long movieId) {
+        mPresenter.onItemClicked(movieId);
     }
 
     private void restoreLayoutPosition() {
@@ -119,5 +124,10 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
             mRecyclerView.getLayoutManager().onRestoreInstanceState(mLayoutManagerState);
             mLayoutManagerState = null;
         }
+    }
+
+    @Override
+    public boolean isActive() {
+        return isAdded();
     }
 }
