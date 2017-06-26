@@ -28,8 +28,8 @@ import static org.mockito.Mockito.when;
 public class MovieListPresenterTest {
 
     private static MovieListPage MOVIE_LIST_PAGE;
-    private static List<Movie> MOVIE_LIST;
     @Mock
+    private
     MovieRepository movieRepository;
 
     @Mock
@@ -51,7 +51,7 @@ public class MovieListPresenterTest {
         // The presenter won't update the view unless it's active.
         when(view.isActive()).thenReturn(true);
 
-        MOVIE_LIST = new ArrayList<>();
+        List<Movie> MOVIE_LIST = new ArrayList<>();
         MOVIE_LIST.add(new Movie("Wonder Woman", "about a wonderful woman"));
         MOVIE_LIST.add(new Movie("Logan", "Wolverine as you know"));
         MOVIE_LIST_PAGE = new MovieListPage(MOVIE_LIST);
@@ -76,5 +76,17 @@ public class MovieListPresenterTest {
     public void openMovieDetail() {
         mPresenter.onItemClicked(1);
         verify(view).openDetail(1);
+    }
+
+    @Test
+    public void showError() {
+        mPresenter.onRefresh();
+        verify(movieRepository).getMovies(mLoadMovieCallbackCaptor.capture());
+        mLoadMovieCallbackCaptor.getValue().onError("There is a problem");
+
+        InOrder inOrder = inOrder(view);
+        inOrder.verify(view).setRefreshing(true);
+        inOrder.verify(view).setRefreshing(false);
+        verify(view).showErrorMessage("There is a problem");
     }
 }
