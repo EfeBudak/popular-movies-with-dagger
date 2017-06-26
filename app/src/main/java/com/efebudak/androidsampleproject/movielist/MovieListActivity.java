@@ -25,9 +25,9 @@ public class MovieListActivity extends AppCompatActivity implements HasSupportFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
 
-        MovieListFragment spendingListFragment
+        MovieListFragment movieListFragment
                 = (MovieListFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
-        if (spendingListFragment == null) {
+        if (movieListFragment == null) {
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(),
                     MovieListFragment.newInstance(),

@@ -33,6 +33,7 @@ public class MovieListPresenterTest {
     MovieRepository movieRepository;
 
     @Mock
+    private
     MovieListContract.View view;
     @Captor
     private ArgumentCaptor<MovieDataSource.Callback<MovieListPage>> mLoadMovieCallbackCaptor;
@@ -40,9 +41,7 @@ public class MovieListPresenterTest {
     private MovieListPresenter mPresenter;
 
     @Before
-    public void setupTasksPresenter() {
-        // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
-        // inject the mocks in the test the initMocks method needs to be called.
+    public void setupMovieListPresenter() {
         MockitoAnnotations.initMocks(this);
 
         // Get a reference to the class under test

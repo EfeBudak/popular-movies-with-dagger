@@ -43,9 +43,9 @@ public class MovieDetailActivity extends AppCompatActivity implements HasSupport
         long movieId = getIntent().getExtras().getLong(BUNDLE_MOVIE_ID);
         setContentView(R.layout.activity_movie_detail);
 
-        MovieDetailFragment spendingListFragment
+        MovieDetailFragment movieDetailFragment
                 = (MovieDetailFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
-        if (spendingListFragment == null) {
+        if (movieDetailFragment == null) {
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(),
                     MovieDetailFragment.newInstance(movieId),
