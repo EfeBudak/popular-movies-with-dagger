@@ -2,6 +2,8 @@ package com.efebudak.androidsampleproject.di;
 
 import android.support.v4.app.Fragment;
 
+import com.efebudak.androidsampleproject.moviedetail.MovieDetailFragment;
+import com.efebudak.androidsampleproject.moviedetail.MovieDetailFragmentSubComponent;
 import com.efebudak.androidsampleproject.movielist.MovieListFragment;
 import com.efebudak.androidsampleproject.movielist.MovieListFragmentSubComponent;
 
@@ -21,5 +23,10 @@ public abstract class FragmentModule {
     @Binds
     @IntoMap
     @FragmentKey(MovieListFragment.class)
-    abstract AndroidInjector.Factory<? extends Fragment> bindDetailActivity(MovieListFragmentSubComponent.Builder builder);
+    abstract AndroidInjector.Factory<? extends Fragment> bindMovieListFragment(MovieListFragmentSubComponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @FragmentKey(MovieDetailFragment.class)
+    abstract AndroidInjector.Factory<? extends Fragment> bindMovieDetailFragment(MovieDetailFragmentSubComponent.Builder builder);
 }

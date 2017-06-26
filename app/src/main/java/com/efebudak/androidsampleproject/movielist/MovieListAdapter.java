@@ -26,15 +26,22 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     @NonNull
     private List<Movie> mMovieList;
 
-    MovieListAdapter(@NonNull List<Movie> movieList) {
+    @NonNull
+    private MovieListListener mMovieListListener;
+
+    MovieListAdapter(@NonNull List<Movie> movieList, @NonNull MovieListListener movieListListener) {
         mMovieList = movieList;
+        mMovieListListener = movieListListener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View root = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.movie_item, parent, false);
-        return new ViewHolder(root);
+
+        final ViewHolder viewHolder = new ViewHolder(root);
+        root.setOnClickListener(v -> mMovieListListener.onItemClicked(mMovieList.get(viewHolder.getAdapterPosition()).getId()));
+        return viewHolder;
     }
 
     @Override
@@ -58,6 +65,10 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     void updateList(@NonNull final List<Movie> movieList) {
         mMovieList = movieList;
         notifyDataSetChanged();
+    }
+
+    interface MovieListListener {
+        void onItemClicked(long movieId);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

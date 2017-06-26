@@ -17,28 +17,22 @@ import android.widget.Toast;
 
 import com.efebudak.androidsampleproject.R;
 import com.efebudak.androidsampleproject.data.Movie;
+import com.efebudak.androidsampleproject.moviedetail.MovieDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.AndroidSupportInjection;
-import dagger.android.support.HasSupportFragmentInjector;
 
 /**
  * Created by efebudak on 23/06/2017.
  */
 
-public class MovieListFragment extends Fragment implements
-        MovieListContract.View, HasSupportFragmentInjector {
+public class MovieListFragment extends Fragment implements MovieListContract.View, MovieListAdapter.MovieListListener {
 
     private static final String BUNDLE_LAYOUT_MANAGER_STATE = "bundleLayoutManagerState";
-
-    @Inject
-    DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
 
     @Inject
     MovieListContract.Presenter mPresenter;
@@ -81,7 +75,7 @@ public class MovieListFragment extends Fragment implements
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.onRefresh());
         mRecyclerView = (RecyclerView) root.findViewById(R.id.fragment_movie_list_recycler_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        mAdapter = new MovieListAdapter(new ArrayList<>());
+        mAdapter = new MovieListAdapter(new ArrayList<>(), this);
         mRecyclerView.setAdapter(mAdapter);
 
         return root;
@@ -106,11 +100,6 @@ public class MovieListFragment extends Fragment implements
     }
 
     @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return dispatchingAndroidInjector;
-    }
-
-    @Override
     public void updateMovieList(@NonNull List<Movie> movieList) {
         mAdapter.updateList(movieList);
         restoreLayoutPosition();
@@ -124,6 +113,11 @@ public class MovieListFragment extends Fragment implements
     @Override
     public void showErrorMessage(String errorMessage) {
         Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemClicked(long movieId) {
+        startActivity(MovieDetailActivity.newIntent(getActivity(), movieId));
     }
 
     private void restoreLayoutPosition() {
