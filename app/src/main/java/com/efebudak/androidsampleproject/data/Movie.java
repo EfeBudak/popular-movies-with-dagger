@@ -16,6 +16,8 @@ public class Movie {
     private double popularity;
     @SerializedName("poster_path")
     private String posterPath;
+    @SerializedName("backdrop_path")
+    private String backdropPath;
     @SerializedName("release_date")
     private String releaseDate;
 
@@ -33,6 +35,10 @@ public class Movie {
 
     public String getPosterPath() {
         return posterPath;
+    }
+
+    public String getBackdropPath() {
+        return backdropPath;
     }
 
     public String getReleaseDate() {

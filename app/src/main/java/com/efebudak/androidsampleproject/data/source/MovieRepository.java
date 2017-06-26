@@ -1,6 +1,7 @@
 package com.efebudak.androidsampleproject.data.source;
 
 import android.support.annotation.NonNull;
+import android.support.v4.util.ArrayMap;
 
 import com.efebudak.androidsampleproject.data.Movie;
 import com.efebudak.androidsampleproject.data.MovieListPage;
@@ -30,7 +31,7 @@ public class MovieRepository implements MovieDataSource {
     }
 
     @Override
-    public void getMovies(Callback<MovieListPage> callback) {
+    public void getMovies(@NonNull Callback<MovieListPage> callback) {
 
         if (mCachedMovieListPage != null && !mCacheIsDirty) {
             callback.onSuccess(mCachedMovieListPage);
@@ -48,7 +49,7 @@ public class MovieRepository implements MovieDataSource {
                 }
 
                 @Override
-                public void onError(String errorMessage) {
+                public void onError(@NonNull String errorMessage) {
                     callback.onError(errorMessage);
                 }
             });
@@ -58,7 +59,30 @@ public class MovieRepository implements MovieDataSource {
     }
 
     @Override
-    public void getMovieDetail(Callback callback) {
+    public void getMovieDetail(@NonNull Callback<Movie> callback, long movieId) {
+
+        if (mCachedMovieDetails == null) {
+            mCachedMovieDetails = new ArrayMap<>();
+        }
+        final Movie cachedMovie = mCachedMovieDetails.get(movieId);
+
+        if (cachedMovie != null) {
+            callback.onSuccess(cachedMovie);
+            return;
+        }
+
+        mRemoteDataSource.getMovieDetail(new Callback<Movie>() {
+            @Override
+            public void onSuccess(@NonNull Movie response) {
+                mCachedMovieDetails.put(movieId, response);
+                callback.onSuccess(response);
+            }
+
+            @Override
+            public void onError(@NonNull String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        }, movieId);
 
     }
 

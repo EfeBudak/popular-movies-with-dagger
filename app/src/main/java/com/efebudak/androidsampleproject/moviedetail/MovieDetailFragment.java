@@ -2,6 +2,7 @@ package com.efebudak.androidsampleproject.moviedetail;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.efebudak.androidsampleproject.R;
+import com.efebudak.androidsampleproject.data.Movie;
 
 import javax.inject.Inject;
 
@@ -24,8 +26,6 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
     private static final String BUNDLE_MOVIE_ID = "bundleMovieId";
     @Inject
     MovieDetailContract.Presenter presenter;
-
-    private long mMovieId;
 
     private TextView mTextViewTitle;
 
@@ -48,9 +48,8 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_movie_detail, container, false);
 
-        mMovieId = getArguments().getLong(BUNDLE_MOVIE_ID);
+        presenter.setMovieId(getArguments().getLong(BUNDLE_MOVIE_ID));
         mTextViewTitle = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_title);
-        mTextViewTitle.setText("Movieid" + mMovieId);
 
         return root;
     }
@@ -65,5 +64,10 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
     public void onPause() {
         presenter.unsubscribe();
         super.onPause();
+    }
+
+    @Override
+    public void setMovieDetails(@NonNull Movie movie) {
+        mTextViewTitle.setText(movie.getTitle());
     }
 }

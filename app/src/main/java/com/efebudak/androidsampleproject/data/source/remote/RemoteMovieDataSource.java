@@ -1,6 +1,9 @@
 package com.efebudak.androidsampleproject.data.source.remote;
 
+import android.support.annotation.NonNull;
+
 import com.efebudak.androidsampleproject.BuildConfig;
+import com.efebudak.androidsampleproject.data.Movie;
 import com.efebudak.androidsampleproject.data.MovieListPage;
 import com.efebudak.androidsampleproject.data.source.MovieDataSource;
 import com.efebudak.androidsampleproject.data.source.TMDBService;
@@ -26,7 +29,7 @@ public class RemoteMovieDataSource implements MovieDataSource {
     }
 
     @Override
-    public void getMovies(final Callback<MovieListPage> callback) {
+    public void getMovies(@NonNull final Callback<MovieListPage> callback) {
         mTmdbService.getPopularMovieListCall(BuildConfig.API_KEY).enqueue(new retrofit2.Callback<MovieListPage>() {
             @Override
             public void onResponse(Call<MovieListPage> call, Response<MovieListPage> response) {
@@ -41,7 +44,17 @@ public class RemoteMovieDataSource implements MovieDataSource {
     }
 
     @Override
-    public void getMovieDetail(Callback callback) {
+    public void getMovieDetail(@NonNull Callback<Movie> callback, long movieId) {
+        mTmdbService.getMovieDetailCall(movieId, BuildConfig.API_KEY).enqueue(new retrofit2.Callback<Movie>() {
+            @Override
+            public void onResponse(Call<Movie> call, Response<Movie> response) {
+                callback.onSuccess(response.body());
+            }
 
+            @Override
+            public void onFailure(Call<Movie> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
     }
 }

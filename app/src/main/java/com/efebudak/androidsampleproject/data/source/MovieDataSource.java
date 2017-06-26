@@ -2,6 +2,7 @@ package com.efebudak.androidsampleproject.data.source;
 
 import android.support.annotation.NonNull;
 
+import com.efebudak.androidsampleproject.data.Movie;
 import com.efebudak.androidsampleproject.data.MovieListPage;
 
 /**
@@ -13,10 +14,10 @@ public interface MovieDataSource {
     interface Callback<T> {
         void onSuccess(@NonNull T response);
 
-        void onError(String errorMessage);
+        void onError(@NonNull String errorMessage);
     }
 
-    void getMovies(Callback<MovieListPage> callback);
+    void getMovies(@NonNull Callback<MovieListPage> callback);
 
-    void getMovieDetail(Callback callback);
+    void getMovieDetail(@NonNull Callback<Movie> callback, long movieId);
 }

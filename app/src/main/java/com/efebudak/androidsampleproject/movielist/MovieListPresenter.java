@@ -53,7 +53,7 @@ public class MovieListPresenter implements MovieListContract.Presenter {
             }
 
             @Override
-            public void onError(String errorMessage) {
+            public void onError(@NonNull String errorMessage) {
                 mView.setRefreshing(false);
                 mView.showErrorMessage(errorMessage);
             }
