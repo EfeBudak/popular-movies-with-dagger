@@ -3,5 +3,6 @@
     <string name="no_genre">No Genre</string>
     <string name="backdrop_image">Backdrop Image</string>
 
+    <string name="title_info">%1$s (%2$s)</string>
     <string name="popularity_info">Popularity: %1$s</string>
 </resources>

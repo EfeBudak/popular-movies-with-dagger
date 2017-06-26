@@ -24,6 +24,8 @@ public class Movie {
     private String releaseDate;
     @SerializedName("genres")
     private List<Genre> genres;
+    @SerializedName("overview")
+    private String overview;
 
     public long getId() {
         return id;
@@ -33,8 +35,8 @@ public class Movie {
         return title;
     }
 
-    public double getPopularity() {
-        return popularity;
+    public int getPopularity() {
+        return (int) popularity;
     }
 
     public String getPosterPath() {
@@ -51,5 +53,9 @@ public class Movie {
 
     public List<Genre> getGenres() {
         return genres;
+    }
+
+    public String getOverview() {
+        return overview;
     }
 }

@@ -17,33 +17,30 @@
 
         <TextView
             android:id="@+id/fragment_movie_detail_text_view_title"
-            style="@style/MovieTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
+            android:layout_margin="@dimen/item_margin"
+            android:textSize="@dimen/standard_text_size"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/fragment_movie_detail_text_view_genres"
             style="@style/MovieTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/fragment_movie_detail_text_view_popularity"
             style="@style/MovieTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:singleLine="true" />
 
         <TextView
-            android:id="@+id/fragment_movie_detail_text_view_year"
+            android:id="@+id/fragment_movie_detail_text_view_overview"
             style="@style/MovieTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:singleLine="true" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </ScrollView>

@@ -4,4 +4,5 @@
     <dimen name="item_margin">4dp</dimen>
 
     <dimen name="standard_text_size">16sp</dimen>
+    <dimen name="title_text_size">24sp</dimen>
 </resources>

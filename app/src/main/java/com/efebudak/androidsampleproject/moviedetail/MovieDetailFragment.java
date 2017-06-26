@@ -37,7 +37,7 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
     private TextView mTextViewTitle;
     private TextView mTextViewGenres;
     private TextView mTextViewPopularity;
-    private TextView mTextViewYear;
+    private TextView mTextViewOverview;
 
     public static MovieDetailFragment newInstance(final long movieId) {
         final MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
@@ -63,7 +63,7 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
         mTextViewTitle = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_title);
         mTextViewGenres = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_genres);
         mTextViewPopularity = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_popularity);
-        mTextViewYear = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_year);
+        mTextViewOverview = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_overview);
 
         return root;
     }
@@ -80,9 +80,9 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
                 getActivity(),
                 BuildConfig.BASE_IMAGE_URL + Constants.BACKDROP_SIZE + movie.getBackdropPath(),
                 mImageViewBackdrop);
-        mTextViewTitle.setText(movie.getTitle());
+        mTextViewTitle.setText(getString(R.string.title_info, movie.getTitle(), DateUtils.getYear(movie.getReleaseDate())));
         mTextViewGenres.setText(ConversionUtils.generateGenres(getActivity(), movie.getGenres()));
         mTextViewPopularity.setText(getString(R.string.popularity_info, String.valueOf(movie.getPopularity())));
-        mTextViewYear.setText(DateUtils.getYear(movie.getReleaseDate()));
+        mTextViewOverview.setText(movie.getOverview());
     }
 }

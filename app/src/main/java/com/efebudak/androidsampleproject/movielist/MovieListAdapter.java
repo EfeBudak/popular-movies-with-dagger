@@ -1,5 +1,6 @@
 package com.efebudak.androidsampleproject.movielist;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.efebudak.androidsampleproject.BuildConfig;
 import com.efebudak.androidsampleproject.R;
 import com.efebudak.androidsampleproject.data.Movie;
+import com.efebudak.androidsampleproject.util.ui.DateUtils;
 import com.efebudak.androidsampleproject.util.ui.ImageUtils;
 
 import java.util.List;
@@ -47,14 +49,17 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Movie movie = mMovieList.get(position);
+        final Context context = holder.itemView.getContext();
         ImageUtils.loadUrlToImageView(
-                holder.imageView.getContext(),
+                context,
                 BuildConfig.BASE_IMAGE_URL
                         + THUMBNAIL_SIZE
                         + movie.getPosterPath(),
                 holder.imageView);
-        holder.textViewTitle.setText(movie.getTitle());
-        holder.textViewPopularity.setText(String.valueOf(movie.getPopularity()));
+        holder.textViewTitle.setText(
+                context.getString(R.string.title_info, movie.getTitle(), DateUtils.getYear(movie.getReleaseDate())));
+        holder.textViewPopularity.setText(
+                context.getString(R.string.popularity_info, String.valueOf(movie.getPopularity())));
     }
 
     @Override
