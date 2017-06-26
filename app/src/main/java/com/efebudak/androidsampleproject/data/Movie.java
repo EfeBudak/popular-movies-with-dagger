@@ -2,6 +2,8 @@ package com.efebudak.androidsampleproject.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by efebudak on 24/06/2017.
  */
@@ -20,6 +22,8 @@ public class Movie {
     private String backdropPath;
     @SerializedName("release_date")
     private String releaseDate;
+    @SerializedName("genres")
+    private List<Genre> genres;
 
     public long getId() {
         return id;
@@ -43,5 +47,9 @@ public class Movie {
 
     public String getReleaseDate() {
         return releaseDate;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
     }
 }

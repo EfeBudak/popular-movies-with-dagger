@@ -2,4 +2,6 @@
 <resources>
 
     <dimen name="item_margin">4dp</dimen>
+
+    <dimen name="standard_text_size">16sp</dimen>
 </resources>

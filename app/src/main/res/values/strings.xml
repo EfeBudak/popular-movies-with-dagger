@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Popular Movies</string>
+    <string name="no_genre">No Genre</string>
+    <string name="backdrop_image">Backdrop Image</string>
+
+    <string name="popularity_info">Popularity: %1$s</string>
 </resources>

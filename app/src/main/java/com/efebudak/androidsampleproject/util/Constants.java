@@ -7,7 +7,7 @@ package com.efebudak.androidsampleproject.util;
 public final class Constants {
 
     public static final String THUMBNAIL_SIZE = "w185";
-    public static final String POSTER_SIZE = "w500";
+    public static final String BACKDROP_SIZE = "w780";
 
     private Constants() {
     }

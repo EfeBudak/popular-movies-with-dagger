@@ -8,10 +8,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.efebudak.androidsampleproject.BuildConfig;
 import com.efebudak.androidsampleproject.R;
 import com.efebudak.androidsampleproject.data.Movie;
+import com.efebudak.androidsampleproject.util.Constants;
+import com.efebudak.androidsampleproject.util.ui.ConversionUtils;
+import com.efebudak.androidsampleproject.util.ui.DateUtils;
+import com.efebudak.androidsampleproject.util.ui.ImageUtils;
 
 import javax.inject.Inject;
 
@@ -27,7 +33,11 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
     @Inject
     MovieDetailContract.Presenter presenter;
 
+    private ImageView mImageViewBackdrop;
     private TextView mTextViewTitle;
+    private TextView mTextViewGenres;
+    private TextView mTextViewPopularity;
+    private TextView mTextViewYear;
 
     public static MovieDetailFragment newInstance(final long movieId) {
         final MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
@@ -49,7 +59,11 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
         final View root = inflater.inflate(R.layout.fragment_movie_detail, container, false);
 
         presenter.setMovieId(getArguments().getLong(BUNDLE_MOVIE_ID));
+        mImageViewBackdrop = (ImageView) root.findViewById(R.id.fragment_movie_detail_image_view_backdrop);
         mTextViewTitle = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_title);
+        mTextViewGenres = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_genres);
+        mTextViewPopularity = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_popularity);
+        mTextViewYear = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_year);
 
         return root;
     }
@@ -62,6 +76,13 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
 
     @Override
     public void setMovieDetails(@NonNull Movie movie) {
+        ImageUtils.loadUrlToImageView(
+                getActivity(),
+                BuildConfig.BASE_IMAGE_URL + Constants.BACKDROP_SIZE + movie.getBackdropPath(),
+                mImageViewBackdrop);
         mTextViewTitle.setText(movie.getTitle());
+        mTextViewGenres.setText(ConversionUtils.generateGenres(getActivity(), movie.getGenres()));
+        mTextViewPopularity.setText(getString(R.string.popularity_info, String.valueOf(movie.getPopularity())));
+        mTextViewYear.setText(DateUtils.getYear(movie.getReleaseDate()));
     }
 }
