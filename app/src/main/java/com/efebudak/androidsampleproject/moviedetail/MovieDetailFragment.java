@@ -61,12 +61,6 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
     }
 
     @Override
-    public void onPause() {
-        presenter.unsubscribe();
-        super.onPause();
-    }
-
-    @Override
     public void setMovieDetails(@NonNull Movie movie) {
         mTextViewTitle.setText(movie.getTitle());
     }

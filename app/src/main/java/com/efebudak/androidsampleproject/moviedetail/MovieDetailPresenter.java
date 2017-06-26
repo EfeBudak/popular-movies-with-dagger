@@ -40,11 +40,6 @@ public class MovieDetailPresenter implements MovieDetailContract.Presenter {
     }
 
     @Override
-    public void unsubscribe() {
-
-    }
-
-    @Override
     public void setMovieId(long movieId) {
         mMovieId = movieId;
     }

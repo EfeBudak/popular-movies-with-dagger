@@ -27,13 +27,7 @@ public class MovieListPresenter implements MovieListContract.Presenter {
 
     @Override
     public void subscribe() {
-
         getMoviePage();
-    }
-
-    @Override
-    public void unsubscribe() {
-
     }
 
     @Override

@@ -6,6 +6,4 @@ package com.efebudak.androidsampleproject;
 
 public interface BasePresenter {
     void subscribe();
-
-    void unsubscribe();
 }

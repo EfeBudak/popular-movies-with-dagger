@@ -88,12 +88,6 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
     }
 
     @Override
-    public void onPause() {
-        mPresenter.unsubscribe();
-        super.onPause();
-    }
-
-    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(BUNDLE_LAYOUT_MANAGER_STATE, mRecyclerView.getLayoutManager().onSaveInstanceState());
