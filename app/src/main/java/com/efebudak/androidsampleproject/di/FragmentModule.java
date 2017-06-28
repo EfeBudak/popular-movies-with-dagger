@@ -1,17 +1,12 @@
 package com.efebudak.androidsampleproject.di;
 
-import android.support.v4.app.Fragment;
-
 import com.efebudak.androidsampleproject.moviedetail.MovieDetailFragment;
-import com.efebudak.androidsampleproject.moviedetail.MovieDetailFragmentSubComponent;
+import com.efebudak.androidsampleproject.moviedetail.MovieDetailFragmentModule;
 import com.efebudak.androidsampleproject.movielist.MovieListFragment;
-import com.efebudak.androidsampleproject.movielist.MovieListFragmentSubComponent;
+import com.efebudak.androidsampleproject.movielist.MovieListFragmentModule;
 
-import dagger.Binds;
 import dagger.Module;
-import dagger.android.AndroidInjector;
-import dagger.android.support.FragmentKey;
-import dagger.multibindings.IntoMap;
+import dagger.android.ContributesAndroidInjector;
 
 /**
  * Created by efebudak on 24/06/2017.
@@ -20,13 +15,11 @@ import dagger.multibindings.IntoMap;
 @Module
 public abstract class FragmentModule {
 
-    @Binds
-    @IntoMap
-    @FragmentKey(MovieListFragment.class)
-    abstract AndroidInjector.Factory<? extends Fragment> bindMovieListFragment(MovieListFragmentSubComponent.Builder builder);
+    @ActivityScope
+    @ContributesAndroidInjector(modules = MovieListFragmentModule.class)
+    abstract MovieListFragment contributesMovieListFragment();
 
-    @Binds
-    @IntoMap
-    @FragmentKey(MovieDetailFragment.class)
-    abstract AndroidInjector.Factory<? extends Fragment> bindMovieDetailFragment(MovieDetailFragmentSubComponent.Builder builder);
+    @ActivityScope
+    @ContributesAndroidInjector(modules = MovieDetailFragmentModule.class)
+    abstract MovieDetailFragment contributesMovieDetailFragment();
 }
