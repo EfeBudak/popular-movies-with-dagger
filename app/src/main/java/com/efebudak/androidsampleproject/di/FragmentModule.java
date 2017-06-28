@@ -15,11 +15,11 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class FragmentModule {
 
-    @ActivityScope
+    @FragmentScope
     @ContributesAndroidInjector(modules = MovieListFragmentModule.class)
     abstract MovieListFragment contributesMovieListFragment();
 
-    @ActivityScope
+    @FragmentScope
     @ContributesAndroidInjector(modules = MovieDetailFragmentModule.class)
     abstract MovieDetailFragment contributesMovieDetailFragment();
 }
