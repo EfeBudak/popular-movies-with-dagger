@@ -13,6 +13,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class MovieListFragmentProvider {
 
+    @FragmentScope
     @ContributesAndroidInjector(modules = MovieListFragmentModule.class)
     abstract MovieListFragment contributesMovieListFragment();
 

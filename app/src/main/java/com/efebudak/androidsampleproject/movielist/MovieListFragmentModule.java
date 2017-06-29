@@ -14,9 +14,11 @@ import dagger.Module;
 @Module
 public abstract class MovieListFragmentModule {
 
+    @FragmentScope
     @Binds
     abstract MovieListContract.View provideView(MovieListFragment movieListFragment);
 
+    @FragmentScope
     @Binds
     abstract MovieListContract.Presenter providePresenter(MovieListPresenter movieListPresenter);
 }

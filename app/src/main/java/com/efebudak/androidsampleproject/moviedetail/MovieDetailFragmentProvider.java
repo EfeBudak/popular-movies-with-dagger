@@ -12,6 +12,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class MovieDetailFragmentProvider {
 
+    @FragmentScope
     @ContributesAndroidInjector(modules = MovieDetailFragmentModule.class)
     abstract MovieDetailFragment contributesMovieDetailFragment();
 }

@@ -13,16 +13,19 @@ import dagger.Provides;
 @Module
 public class MovieDetailFragmentModule {
 
+    @FragmentScope
     @Provides
     MovieDetailContract.View provideDetailView(MovieDetailFragment movieDetailFragment) {
         return movieDetailFragment;
     }
 
+    @FragmentScope
     @Provides
     MovieDetailContract.Presenter provideDetailPresenter(MovieDetailPresenter movieDetailPresenter) {
         return movieDetailPresenter;
     }
 
+    @FragmentScope
     @Provides
     Long provideMovieId(MovieDetailActivity movieDetailActivity) {
         return movieDetailActivity.movieId;
