@@ -27,6 +27,8 @@ public class MovieDetailActivity extends AppCompatActivity implements HasSupport
     @Inject
     DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
 
+    public long movieId;
+
     @NonNull
     public static Intent newIntent(@NonNull final Context context, long movieId) {
         final Intent intent = new Intent(context, MovieDetailActivity.class);
@@ -38,9 +40,9 @@ public class MovieDetailActivity extends AppCompatActivity implements HasSupport
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        movieId = getIntent().getExtras().getLong(BUNDLE_MOVIE_ID);
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        long movieId = getIntent().getExtras().getLong(BUNDLE_MOVIE_ID);
         setContentView(R.layout.activity_movie_detail);
 
         MovieDetailFragment movieDetailFragment
@@ -48,7 +50,7 @@ public class MovieDetailActivity extends AppCompatActivity implements HasSupport
         if (movieDetailFragment == null) {
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(),
-                    MovieDetailFragment.newInstance(movieId),
+                    MovieDetailFragment.newInstance(),
                     R.id.activity_main_frame_layout);
         }
     }

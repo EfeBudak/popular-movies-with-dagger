@@ -1,5 +1,6 @@
 package com.efebudak.androidsampleproject.movielist;
 
+
 import com.efebudak.androidsampleproject.di.FragmentScope;
 
 import dagger.Binds;

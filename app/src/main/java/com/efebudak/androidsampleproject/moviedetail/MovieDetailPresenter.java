@@ -19,9 +19,10 @@ public class MovieDetailPresenter implements MovieDetailContract.Presenter {
     private long mMovieId;
 
     @Inject
-    MovieDetailPresenter(MovieDetailContract.View view, MovieRepository movieRepository) {
+    MovieDetailPresenter(MovieDetailContract.View view, MovieRepository movieRepository, Long movieId) {
         mView = view;
         mMovieRepository = movieRepository;
+        mMovieId = movieId;
     }
 
     @Override
@@ -37,10 +38,5 @@ public class MovieDetailPresenter implements MovieDetailContract.Presenter {
 
             }
         }, mMovieId);
-    }
-
-    @Override
-    public void setMovieId(long movieId) {
-        mMovieId = movieId;
     }
 }

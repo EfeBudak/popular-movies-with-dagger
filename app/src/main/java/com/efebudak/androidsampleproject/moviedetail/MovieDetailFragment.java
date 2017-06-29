@@ -29,7 +29,6 @@ import dagger.android.support.AndroidSupportInjection;
 
 public class MovieDetailFragment extends Fragment implements MovieDetailContract.View {
 
-    private static final String BUNDLE_MOVIE_ID = "bundleMovieId";
     @Inject
     MovieDetailContract.Presenter presenter;
 
@@ -39,12 +38,9 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
     private TextView mTextViewPopularity;
     private TextView mTextViewOverview;
 
-    public static MovieDetailFragment newInstance(final long movieId) {
-        final MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
-        final Bundle bundle = new Bundle();
-        bundle.putLong(BUNDLE_MOVIE_ID, movieId);
-        movieDetailFragment.setArguments(bundle);
-        return movieDetailFragment;
+    @NonNull
+    public static MovieDetailFragment newInstance() {
+        return new MovieDetailFragment();
     }
 
     @Override
@@ -58,7 +54,6 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_movie_detail, container, false);
 
-        presenter.setMovieId(getArguments().getLong(BUNDLE_MOVIE_ID));
         mImageViewBackdrop = (ImageView) root.findViewById(R.id.fragment_movie_detail_image_view_backdrop);
         mTextViewTitle = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_title);
         mTextViewGenres = (TextView) root.findViewById(R.id.fragment_movie_detail_text_view_genres);

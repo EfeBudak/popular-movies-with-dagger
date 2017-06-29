@@ -12,11 +12,10 @@ import com.efebudak.androidsampleproject.data.Movie;
 
 public interface MovieDetailContract {
 
-    interface View extends BaseView{
+    interface View extends BaseView {
         void setMovieDetails(@NonNull Movie movie);
     }
 
-    interface Presenter extends BasePresenter{
-        void setMovieId(long movieId);
+    interface Presenter extends BasePresenter {
     }
 }

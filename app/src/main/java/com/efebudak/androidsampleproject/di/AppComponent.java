@@ -13,14 +13,12 @@ import dagger.android.AndroidInjectionModule;
 /**
  * Created by efebudak on 23/06/2017.
  */
-
 @Singleton
 @Component(modules = {
         AndroidInjectionModule.class,
         AppModule.class,
         ApiModule.class,
-        ActivityModule.class,
-        FragmentModule.class})
+        ActivityModule.class})
 public interface AppComponent {
     @Component.Builder
     interface Builder {

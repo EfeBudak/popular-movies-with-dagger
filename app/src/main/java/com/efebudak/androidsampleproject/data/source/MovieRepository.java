@@ -16,7 +16,6 @@ import javax.inject.Singleton;
  * Created by efebudak on 24/06/2017.
  */
 
-@Singleton
 public class MovieRepository implements MovieDataSource {
 
     private MovieDataSource mRemoteDataSource;

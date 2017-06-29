@@ -1,18 +1,30 @@
 package com.efebudak.androidsampleproject.moviedetail;
 
-import dagger.Binds;
+import com.efebudak.androidsampleproject.di.FragmentScope;
+
 import dagger.Module;
+import dagger.Provides;
 
 /**
  * Created by efebudak on 25/06/2017.
  */
 
+@FragmentScope
 @Module
-public abstract class MovieDetailFragmentModule {
+public class MovieDetailFragmentModule {
 
-    @Binds
-    abstract MovieDetailContract.View provideDetailView(MovieDetailFragment movieDetailFragment);
+    @Provides
+    MovieDetailContract.View provideDetailView(MovieDetailFragment movieDetailFragment) {
+        return movieDetailFragment;
+    }
 
-    @Binds
-    abstract MovieDetailContract.Presenter provideDetailPresenter(MovieDetailPresenter movieDetailPresenter);
+    @Provides
+    MovieDetailContract.Presenter provideDetailPresenter(MovieDetailPresenter movieDetailPresenter) {
+        return movieDetailPresenter;
+    }
+
+    @Provides
+    Long provideMovieId(MovieDetailActivity movieDetailActivity) {
+        return movieDetailActivity.movieId;
+    }
 }
