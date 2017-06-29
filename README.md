@@ -7,7 +7,9 @@ Used libraries;
 - Retrofit 
 - Picasso
 - Mockito 
-- Dagger 
+- Dagger
+
+https://www.themoviedb.org/documentation/api is used to get movie data.
 
 # License
 
