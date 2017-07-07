@@ -37,6 +37,9 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
     @Inject
     MovieListContract.Presenter mPresenter;
 
+    @Inject
+    Context mAppContext;
+
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private MovieListAdapter mAdapter;
@@ -106,7 +109,7 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
 
     @Override
     public void showErrorMessage(String errorMessage) {
-        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+        Toast.makeText(mAppContext, errorMessage, Toast.LENGTH_LONG).show();
     }
 
     @Override
