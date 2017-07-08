@@ -11,6 +11,11 @@ Used libraries;
 
 https://www.themoviedb.org/documentation/api is used to get movie data.
 
+You need to add a file named "secret.properties" to make the project going. Here is the sample file;
+
+https://gist.github.com/EfeBudak/7c9f5c8fe003d3f983f37ff27be52b70
+
+
 # License
 
 Copyright 2017 Efe Budak.
