@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha5'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'me.tatarka:gradle-retrolambda:3.6.1'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -28,10 +28,10 @@ task clean(type: Delete) {
 
 ext {
 
-    supportLibraryVersion = '25.4.0'
+    supportLibraryVersion = '26.1.0'
     junitVersion = '4.12'
     mockitoVersion = '2.6.3'
-    daggerVersion = '2.11'
+    daggerVersion = '2.13'
     retrofitVersion = '2.3.0'
     picassoVersion = '2.5.2'
 }
